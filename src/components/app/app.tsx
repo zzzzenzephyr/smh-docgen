@@ -17,11 +17,18 @@ import { Button } from "@/components/ui/button";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { CertificatePDF, randomAlphaName } from "./generator";
 import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function App() {
-  const [selectedName, setSelectedName] = useState("");
-  const [selectedNpm, setSelectedNpm] = useState("");
+  const [namaMahasiswa, setNamaMahasiswa] = useState("");
+  const [nomerInduk, setNomerInduk] = useState("");
   const [showDownload, setShowDownload] = useState(false);
+  const [judulKegiatan, setJudulKegiatan] = useState("");
+  const [sasaranKegiatan, setSasaranKegiatan] = useState("");
+  const [peranAnggota, setPeranAnggota] = useState("");
+  const [anggaranBiaya, setAnggaranBiaya] = useState("");
+  const [deskripsiKegiatan, setDeskripsiKegiatan] = useState("");
 
   const nameOptions = [
     "Jelita Arta Mukhlia",
@@ -58,17 +65,18 @@ export default function App() {
   };
 
   return (
-    <Card className="relative z-10 w-full max-w-md p-8 rounded-lg bg-card shadow-lg">
+    <Card className="overflow-hidden relative z-10 w-full max-w-md p-8 rounded-lg bg-card shadow-lg my-8">
       <CardHeader>
         <CardTitle className="text-4xl font-bold tracking-tighter md:text-5xl lg:text-7xl text-center">
           <AuroraText>Log Book</AuroraText>
         </CardTitle>
       </CardHeader>
+      <Separator />
       <CardContent>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
             <label className="block mb-1 font-medium">Nama Mahasiswa</label>
-            <Select value={selectedName} onValueChange={setSelectedName} required>
+            <Select value={namaMahasiswa} onValueChange={setNamaMahasiswa} required>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Pilih Nama Mahasiswa" />
               </SelectTrigger>
@@ -85,7 +93,7 @@ export default function App() {
             <label className="block mb-1 font-medium">
               Nomor Pokok Mahasiswa
             </label>
-            <Select value={selectedNpm} onValueChange={setSelectedNpm} required>
+            <Select value={nomerInduk} onValueChange={setNomerInduk} required>
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Pilih Nomor Pokok Mahasiswa" />
               </SelectTrigger>
@@ -98,12 +106,67 @@ export default function App() {
               </SelectContent>
             </Select>
           </div>
+          <div>
+            <label className="block mb-1 font-medium">Judul Kegiatan</label>
+            <Input
+              type="text"
+              placeholder="Masukkan Judul Kegiatan"
+              className="w-full"
+              value={judulKegiatan}
+              onChange={(e) => setJudulKegiatan(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Sasaran Kegiatan</label>
+            <Input
+              type="text"
+              placeholder="Masukkan Sasaran Kegiatan"
+              className="w-full"
+              value={sasaranKegiatan}
+              onChange={(e) => setSasaranKegiatan(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Peran Anggota</label>
+            <Input
+              type="text"
+              placeholder="Masukkan Peran Anggota"
+              className="w-full"
+              value={peranAnggota}
+              onChange={(e) => setPeranAnggota(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Anggaran Biaya Kegiatan</label>
+            <Input
+              type="text"
+              placeholder="Masukkan Anggaran Biaya Kegiatan"
+              className="w-full"
+              value={anggaranBiaya}
+              onChange={(e) => {
+                // Only allow numbers 0-9
+                const filtered = e.target.value.replace(/[^0-9]/g, "");
+                setAnggaranBiaya(filtered);
+              }}
+            />
+          </div>
+          <div>
+            <label className="block mb-1 font-medium">Deskripsi Kegiatan</label>
+            <Textarea
+              placeholder="Masukkan Deskripsi Kegiatan (maksimal 800 karakter)"
+              className="w-full"
+              value={deskripsiKegiatan}
+              maxLength={800}
+              onChange={(e) => setDeskripsiKegiatan(e.target.value)}
+            />
+            <div className="text-xs text-right text-muted-foreground">{deskripsiKegiatan.length}/800</div>
+          </div>
           <RainbowButton type="submit" className="mt-7">Generate Log Book</RainbowButton>
         </form>
         {showDownload && (
           <div className="mt-4">
             <PDFDownloadLink
-              document={<CertificatePDF name={selectedName} />}
+              document={<CertificatePDF name={namaMahasiswa} />}
               fileName={randomAlphaName(10) + ".pdf"}
             >
               {({ loading }) =>

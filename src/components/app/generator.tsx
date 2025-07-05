@@ -5,8 +5,8 @@ import {
   Text as PDFText,
 } from "@react-pdf/renderer";
 
-export const CERT_WIDTH = 3508;
-export const CERT_HEIGHT = 2480;
+export const CERT_WIDTH = 1241;
+export const CERT_HEIGHT = 1755;
 
 export interface CertificatePDFProps {
   name: string;
@@ -20,7 +20,7 @@ export function CertificatePDF({ name }: CertificatePDFProps) {
         style={{ position: "relative" }}
       >
         <PDFImage
-          src="/2019.jpg"
+          src="/image/logbook.jpg"
           style={{ width: CERT_WIDTH, height: CERT_HEIGHT }}
         />
         <PDFText
