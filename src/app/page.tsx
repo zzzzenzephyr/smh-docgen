@@ -1,4 +1,4 @@
-import AppCertificateForm from "@/components/app/app";
+import AppCertificateForm from "@/components/app/page";
 
 export default function Page() {
   return (

@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "browser": "xdg-open http://localhost:3000",
     "dev": "next dev --turbopack",
+    "x": "npm run browser & npm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -21,7 +23,8 @@
     "next": "15.3.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "unique-string": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
