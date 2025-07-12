@@ -13,16 +13,25 @@ import { nameOptions, npmOptions, weekDate } from "@/data/app";
 import { Textarea } from "@/components/ui/textarea";
 
 export default function AppForm({
-                                  username, setUsername,
-                                  userid, setUserid,
-                                  date, setDate,
-                                  week, setWeek,
-                                  headline, setHeadline,
-                                  target, setTarget,
-                                  role, setRole,
-                                  money, setMoney,
-                                  description, setDescription,
-                                }: {
+  username,
+  setUsername,
+  userid,
+  setUserid,
+  date,
+  setDate,
+  week,
+  setWeek,
+  headline,
+  setHeadline,
+  target,
+  setTarget,
+  role,
+  setRole,
+  money,
+  setMoney,
+  description,
+  setDescription,
+}: {
   username: string;
   setUsername: Dispatch<SetStateAction<string>>;
   userid: string;
@@ -57,7 +66,10 @@ export default function AppForm({
   return (
     <>
       <UsernameSelect value={username} onValueChange={handleNameSelectChange} />
-      <UseridSelect value={userid} onValueChange={(value) => setUserid(value)} />
+      <UseridSelect
+        value={userid}
+        onValueChange={(value) => setUserid(value)}
+      />
       <Separator />
       <DateSelect value={date} onValueChange={handleDateSelectChange} />
       <WeekSelect value={week} onValueChange={(value) => setWeek(value)} />
@@ -71,18 +83,31 @@ export default function AppForm({
   );
 }
 
-function UsernameSelect({ value, onValueChange }: { value: string; onValueChange: (value: string) => void }) {
+function UsernameSelect({
+  value,
+  onValueChange,
+}: {
+  value: string;
+  onValueChange: (value: string) => void;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Nama Mahasiswa</label>
-      <Select name="username" value={value} onValueChange={onValueChange} required>
+      <Select
+        name="username"
+        value={value}
+        onValueChange={onValueChange}
+        required
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Pilih Nama Mahasiswa" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {nameOptions.map((item) => (
-              <SelectItem key={item} value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>
+                {item}
+              </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>
@@ -91,20 +116,31 @@ function UsernameSelect({ value, onValueChange }: { value: string; onValueChange
   );
 }
 
-function UseridSelect({ value, onValueChange }: { value: string; onValueChange: (value: string) => void }) {
+function UseridSelect({
+  value,
+  onValueChange,
+}: {
+  value: string;
+  onValueChange: (value: string) => void;
+}) {
   return (
     <div>
-      <label className="block mb-1 font-medium">
-        Nomor Pokok Mahasiswa
-      </label>
-      <Select name="userid" value={value} onValueChange={onValueChange} disabled>
+      <label className="block mb-1 font-medium">Nomor Pokok Mahasiswa</label>
+      <Select
+        name="userid"
+        value={value}
+        onValueChange={onValueChange}
+        disabled
+      >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Pilih Nomor Pokok Mahasiswa" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {npmOptions.map((item) => (
-              <SelectItem key={item} value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>
+                {item}
+              </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>
@@ -113,23 +149,26 @@ function UseridSelect({ value, onValueChange }: { value: string; onValueChange: 
   );
 }
 
-function DateSelect({ value, onValueChange }: { value: string; onValueChange: (value: string) => void }) {
+function DateSelect({
+  value,
+  onValueChange,
+}: {
+  value: string;
+  onValueChange: (value: string) => void;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Tanggal Pelaksanaan</label>
-      <Select
-        name="date"
-        value={value}
-        onValueChange={onValueChange}
-        required
-      >
+      <Select name="date" value={value} onValueChange={onValueChange} required>
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Pilih Tanggal Pelaksanaan" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {weekDate.map((item) => (
-              <SelectItem key={item} value={item}>{item}</SelectItem>
+              <SelectItem key={item} value={item}>
+                {item}
+              </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>
@@ -138,7 +177,13 @@ function DateSelect({ value, onValueChange }: { value: string; onValueChange: (v
   );
 }
 
-function WeekSelect({ value, onValueChange }: { value: string; onValueChange: (value: string) => void }) {
+function WeekSelect({
+  value,
+  onValueChange,
+}: {
+  value: string;
+  onValueChange: (value: string) => void;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Minggu Pelaksanaan</label>
@@ -149,7 +194,9 @@ function WeekSelect({ value, onValueChange }: { value: string; onValueChange: (v
         <SelectContent>
           <SelectGroup>
             {[...Array(9)].map((_, idx) => (
-              <SelectItem key={idx + 1} value={String(idx + 1)}>{idx + 1}</SelectItem>
+              <SelectItem key={idx + 1} value={String(idx + 1)}>
+                {idx + 1}
+              </SelectItem>
             ))}
           </SelectGroup>
         </SelectContent>
@@ -158,7 +205,13 @@ function WeekSelect({ value, onValueChange }: { value: string; onValueChange: (v
   );
 }
 
-function HeadlineInput({ value, setHeadline }: { value: string; setHeadline: Dispatch<SetStateAction<string>> }) {
+function HeadlineInput({
+  value,
+  setHeadline,
+}: {
+  value: string;
+  setHeadline: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Judul Kegiatan</label>
@@ -175,7 +228,13 @@ function HeadlineInput({ value, setHeadline }: { value: string; setHeadline: Dis
   );
 }
 
-function TargetInput({ value, setTarget }: { value: string; setTarget: Dispatch<SetStateAction<string>> }) {
+function TargetInput({
+  value,
+  setTarget,
+}: {
+  value: string;
+  setTarget: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Sasaran Kegiatan</label>
@@ -192,7 +251,13 @@ function TargetInput({ value, setTarget }: { value: string; setTarget: Dispatch<
   );
 }
 
-function RoleInput({ value, setRole }: { value: string; setRole: Dispatch<SetStateAction<string>> }) {
+function RoleInput({
+  value,
+  setRole,
+}: {
+  value: string;
+  setRole: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Peran Anggota</label>
@@ -209,7 +274,13 @@ function RoleInput({ value, setRole }: { value: string; setRole: Dispatch<SetSta
   );
 }
 
-function MoneyInput({ value, setMoney }: { value: string; setMoney: Dispatch<SetStateAction<string>> }) {
+function MoneyInput({
+  value,
+  setMoney,
+}: {
+  value: string;
+  setMoney: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Anggaran Biaya Kegiatan</label>
@@ -229,7 +300,13 @@ function MoneyInput({ value, setMoney }: { value: string; setMoney: Dispatch<Set
   );
 }
 
-function DescriptionInput({ value, setValue }: { value: string; setValue: Dispatch<SetStateAction<string>> }) {
+function DescriptionInput({
+  value,
+  setValue,
+}: {
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <div>
       <label className="block mb-1 font-medium">Deskripsi Kegiatan</label>
@@ -242,7 +319,9 @@ function DescriptionInput({ value, setValue }: { value: string; setValue: Dispat
         onChange={(e) => setValue(e.target.value)}
         required
       />
-      <div className="text-xs text-right text-muted-foreground">{value.length}/800</div>
+      <div className="text-xs text-right text-muted-foreground">
+        {value.length}/800
+      </div>
     </div>
   );
 }

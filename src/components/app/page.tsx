@@ -60,7 +60,9 @@ export default function Page() {
             setDescription={setDescription}
           />
 
-          <RainbowButton type="submit" className="mt-7">Generate Log Book</RainbowButton>
+          <RainbowButton type="submit" className="mt-7">
+            Generate Log Book
+          </RainbowButton>
         </form>
         {showDownload && (
           <div className="mt-4">
@@ -78,7 +80,7 @@ export default function Page() {
                   description={description}
                 />
               }
-              fileName={randomString().slice(0,10) + ".pdf"}
+              fileName={randomString().slice(0, 10) + ".pdf"}
             >
               {({ loading }) =>
                 loading ? (
@@ -87,7 +89,6 @@ export default function Page() {
                   </Button>
                 ) : (
                   <Button className="w-full mt-2">Download Log Book</Button>
-
                 )
               }
             </PDFDownloadLink>
