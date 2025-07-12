@@ -7,10 +7,16 @@ import {
   Font,
 } from "@react-pdf/renderer";
 
-// Register custom font
 Font.register({
   family: "TimesNewRoman",
   src: "/font/times.ttf",
+  fontWeight: "normal",
+  fontStyle: "normal",
+});
+
+Font.register({
+  family: "TimesNewRomanBold",
+  src: "/font/times-bold.ttf",
   fontWeight: "normal",
   fontStyle: "normal",
 });
@@ -51,12 +57,13 @@ export function LogBook({
           src="/image/logbook.jpg"
           style={{ width: CERT_WIDTH, height: CERT_HEIGHT }}
         />
-        <PDFInput offset={0}>{username}</PDFInput>
-        <PDFInput offset={1}>{userid}</PDFInput>
-        <PDFInput offset={5}>{headline}</PDFInput>
-        <PDFInput offset={6}>{target}</PDFInput>
-        <PDFInput offset={7}>{role}</PDFInput>
-        <PDFInput offset={8}>{
+        <PDFHeader>{`MINGGU KE - ${week}`}</PDFHeader>
+        <PDFInput row={0}>{username}</PDFInput>
+        <PDFInput row={1}>{userid}</PDFInput>
+        <PDFInput row={5}>{headline}</PDFInput>
+        <PDFInput row={6}>{target}</PDFInput>
+        <PDFInput row={7}>{role}</PDFInput>
+        <PDFInput row={8}>{
           new Intl.NumberFormat("id-ID", {
             style: "currency",
             currency: "IDR",
@@ -66,11 +73,17 @@ export function LogBook({
             .format(Number(money || 0))
             .replace(/^Rp/, "Rp.") + ",-"
         }</PDFInput>
-        <PDFInput offset={10} style={{
+        <PDFInput row={10} style={{
           width: CERT_WIDTH / 2 + 40,
           textAlign: "justify"
         }}>{description}</PDFInput>
-        <PDFSign>{username}</PDFSign>
+        <PDFSign style={{
+          fontFamily: "TimesNewRomanBold",
+        }}>{username}</PDFSign>
+        <PDFSign style={{
+          top: CERT_HEIGHT - 140,
+      left: CERT_WIDTH / 2 + 130,
+        }}>{userid}</PDFSign>
       </PDFPage>
     </Document>
   );
@@ -78,17 +91,18 @@ export function LogBook({
 
 function PDFInput({
                     children,
-                    offset,
+                    row,
                     style,
                   }: {
   children: string;
-  offset: number;
+  row: number;
+  offset?: number;
   style?: React.ComponentProps<typeof PDFText>["style"];
 }) {
   return (
     <PDFText style={{
       position: "absolute",
-      top: CERT_HEIGHT / 4 + 53 + (45 * offset),
+      top: CERT_HEIGHT / 4 + (53 + (row > 3 ? row / 2 : row)) + (45 * row),
       left: CERT_WIDTH / 2 - 144,
       right: 0,
       width: CERT_WIDTH,
@@ -113,15 +127,41 @@ function PDFSign({
   return (
     <PDFText style={{
       position: "absolute",
-      top: CERT_HEIGHT - 175,
-      left: CERT_WIDTH / 1.75,
+      top: CERT_HEIGHT - 190,
+      left: CERT_WIDTH / 2 + 57,
       right: 0,
       width: CERT_WIDTH,
       textAlign: "left",
       fontSize: 26,
       color: "#000",
-      fontWeight: "bold",
+      fontWeight: "black",
       fontFamily: "TimesNewRoman",
+      ...style,
+    }}>
+      {children}
+    </PDFText>
+  );
+}
+
+function PDFHeader({
+                    children,
+                    style,
+                  }: {
+  children: string;
+  style?: React.ComponentProps<typeof PDFText>["style"];
+}) {
+  return (
+    <PDFText style={{
+      position: "absolute",
+      top: CERT_HEIGHT / 4 - 57,
+      left: CERT_WIDTH / 2 - 105,
+      right: 0,
+      width: CERT_WIDTH,
+      textAlign: "left",
+      fontSize: 29,
+      color: "#000",
+      fontWeight: "black",
+      fontFamily: "TimesNewRomanBold",
       ...style,
     }}>
       {children}
