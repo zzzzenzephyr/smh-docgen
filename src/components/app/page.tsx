@@ -14,15 +14,15 @@ import randomString from "unique-string";
 
 export default function Page() {
   const [showDownload, setShowDownload] = useState(false);
-  const [username, setUsername] = useState("Sofa Machabba Haeta");
-  const [userid, setUserid] = useState("6622600044");
-  const [date, setDate] = useState("14 - 20 Juli 2025");
-  const [week, setWeek] = useState("1");
-  const [headline, setHeadline] = useState("Log Book Mingguan");
-  const [target, setTarget] = useState("Warga Desa Sinduaji");
-  const [role, setRole] = useState("Koordinator Desa Sinduaji");
-  const [money, setMoney] = useState("98124012");
-  const [description, setDescription] = useState("Ini adalah deskripsi kegiatan yang dilakukan selama minggu ini. Kegiatan ini meliputi berbagai aktivitas yang bertujuan untuk meningkatkan kesejahteraan warga desa Sinduaji.");
+  const [username, setUsername] = useState("");
+  const [userid, setUserid] = useState("");
+  const [date, setDate] = useState("");
+  const [week, setWeek] = useState("");
+  const [headline, setHeadline] = useState("");
+  const [target, setTarget] = useState("");
+  const [role, setRole] = useState("");
+  const [money, setMoney] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
