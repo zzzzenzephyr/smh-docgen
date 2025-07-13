@@ -84,6 +84,14 @@ export function LogBook({
         </PDFInput>
         <PDFSign
           style={{
+            top: CERT_HEIGHT / 1.25 - 14,
+            left: CERT_WIDTH / 2 + 160,
+          }}
+        >
+          {date.split(" - ")[1]}
+        </PDFSign>
+        <PDFSign
+          style={{
             fontFamily: "TimesNewRomanBold",
           }}
         >

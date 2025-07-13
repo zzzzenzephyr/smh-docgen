@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { cn } from "@/shadcn/utility";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, VariantProps } from "class-variance-authority";
